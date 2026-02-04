@@ -25,6 +25,8 @@ ENCODER_PATH = "models/label_encoder.joblib"
 
 # Internal scan loop. Runs in background thread, called
 # from start_scan_service().
+
+
 def _scan_loop(params, emit):
     """
     Long-running scan loop executed in a background thread.
@@ -65,20 +67,24 @@ def _scan_loop(params, emit):
 
                 # Diagnostic logging
                 print("="*60, flush=True)
-                print(f"[{time.strftime('%H:%M:%S')}] Raw NFStream flow (#{flow_count}):", flush=True)
+                print(
+                    f"[{time.strftime('%H:%M:%S')}] Raw NFStream flow (#{flow_count}):", flush=True)
                 try:
                     # flow may be a complex object; show its dict for readability
                     print(flow.__dict__, flush=True)
                 except Exception:
                     print(str(flow), flush=True)
 
-                print(f"[{time.strftime('%H:%M:%S')}] Feature-mapped flow (#{flow_count}):", flush=True)
+                print(
+                    f"[{time.strftime('%H:%M:%S')}] Feature-mapped flow (#{flow_count}):", flush=True)
                 print(df_mapped.loc[0].to_string(), flush=True)
 
-                print(f"[{time.strftime('%H:%M:%S')}] Preprocessed flow (#{flow_count}):", flush=True)
+                print(
+                    f"[{time.strftime('%H:%M:%S')}] Preprocessed flow (#{flow_count}):", flush=True)
                 print(df_preprocessed.loc[0].to_string(), flush=True)
 
-                print(f"[{time.strftime('%H:%M:%S')}] Predicted label (#{flow_count}): {predicted_label}", flush=True)
+                print(
+                    f"[{time.strftime('%H:%M:%S')}] Predicted label (#{flow_count}): {predicted_label}", flush=True)
                 print("="*60 + "\n", flush=True)
 
                 # Emit network data and prediction to client
@@ -99,6 +105,8 @@ def _scan_loop(params, emit):
 
 # called from websocket_server.py "start_scan" socket event definition.
 # Uses injected emitter to send diagnostics status info to client
+
+
 def start_scan_service(params, emit):
     """
     Starts the IDS scan service in a background thread.
@@ -124,6 +132,8 @@ def start_scan_service(params, emit):
     _scan_thread.start()
 
 # called from websocket_server.py "stop_scan" socket event definition
+
+
 def stop_scan_service():
     """
     Stops the IDS scan service and waits for the scan thread
