@@ -4,7 +4,7 @@
 
 from nfstream import NFStreamer
 
-WINDOWS_DEFAULT_INTERFACE = r"\Device\NPF_{99DBB1C1-E92C-48AB-87A4-53FC28E76AB3}"
+WINDOWS_DEFAULT_INTERFACE = r"\Device\NPF_{F8B0E351-7CE8-4675-84D0-0F3AB39B5200}"
 
 
 def capture_live(interface="eth0"):
