@@ -97,9 +97,22 @@ release/
 *.AppImage
 *.asar
 # Python virtual environments
+.venv/
 backend/venv/
+venv/
 
 # Python cache directories
 __pycache__/
 **/__pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+
+# Model files (large, regeneratable)
+*.joblib
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
