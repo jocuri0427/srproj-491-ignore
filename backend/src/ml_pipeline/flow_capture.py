@@ -4,7 +4,8 @@
 
 from nfstream import NFStreamer
 
-WINDOWS_DEFAULT_INTERFACE = r"\Device\NPF_{9BBCDFEA-1D37-4FF9-9DAC-7713001E15D3}"
+WINDOWS_DEFAULT_INTERFACE = r"\Device\NPF_{99DBB1C1-E92C-48AB-87A4-53FC28E76AB3}"
+
 
 def capture_live(interface="eth0"):
     if interface == "eth0":
@@ -16,14 +17,15 @@ def capture_live(interface="eth0"):
     """
 
     print(f"Capturing live traffic on '{interface}'... Press Ctrl+C to stop.")
-    
+
     # Initialize nfstream to start reading live network traffic and generating flows
     streamer = NFStreamer(
         source=interface,
         statistical_analysis=True,   # enable extended feature capture
         idle_timeout=5,              # expire inactive flows after 15s
         active_timeout=15,           # split long flows after 30s
-        accounting_mode=1            # mode=1 best replicates CICFlowMeter data collection methodology
+        # mode=1 best replicates CICFlowMeter data collection methodology
+        accounting_mode=1
     )
 
     # Yield each flow object as it is produced by NFStreamer. Downstream
